@@ -7,8 +7,18 @@ public class BinaryTree {
 
     private Node root;
 
+    public Node getRoot(){
+        return root;
+    }
+
     public void addValue(int value){
         this.root = insert(root, value);
+    }
+
+    public List<Integer> traverseInOrder(){
+        ArrayList<Integer> values = new ArrayList<Integer>();
+        inOrder(values, root);
+        return values;
     }
 
     private Node insert(Node root, int value){
@@ -20,12 +30,6 @@ public class BinaryTree {
             root.setRight(insert(root.getRight(), value));
         }
         return root;
-    }
-
-    public List<Integer> traverseInOrder(){
-        ArrayList<Integer> values = new ArrayList<Integer>();
-        inOrder(values, root);
-        return values;
     }
 
     private void inOrder(List<Integer> values, Node node){

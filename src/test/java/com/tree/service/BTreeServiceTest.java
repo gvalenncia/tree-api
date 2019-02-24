@@ -32,24 +32,16 @@ public class BTreeServiceTest {
     @Test
     public void shouldCreateABinaryTreeTest(){
         //given
-        given(binaryTree.traverseInOrder()).willReturn(Arrays.asList(49, 84, 70));
+        given(binaryTree.traverseInOrder()).willReturn(Arrays.asList(49, 70, 84));
         TreeDTO input = new TreeDTO();
-        input.addValue(84);
         input.addValue(70);
+        input.addValue(84);
         input.addValue(49);
 
         //when
         TreeDTO outcome = this.bTreeService.createBinaryTree(input);
 
         //then
-        Assert.assertArrayEquals(mockInOrderTreeDTO().getValues().toArray(), outcome.getValues().toArray());
-    }
-
-    private TreeDTO mockInOrderTreeDTO(){
-        TreeDTO treeDTO = new TreeDTO();
-        treeDTO.addValue(49);
-        treeDTO.addValue(84);
-        treeDTO.addValue(70);
-        return treeDTO;
+        Assert.assertArrayEquals(new Integer[]{ 49, 70, 84 }, outcome.getValues().toArray());
     }
 }

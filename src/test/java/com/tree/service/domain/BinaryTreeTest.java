@@ -22,17 +22,34 @@ public class BinaryTreeTest {
     }
 
     @Test
-    public void shouldTraverseInOrderTest(){
-        //given
-        this.binaryTree.addValue(84);
-        this.binaryTree.addValue(78);
+    public void shouldAddValueInLeftNodeTest(){
+        //when
+        this.binaryTree.addValue(70);
         this.binaryTree.addValue(49);
 
-        //when
-        List<Integer> outcome = this.binaryTree.traverseInOrder();
-
         //then
-        Assert.assertArrayEquals(new Integer[]{49, 78, 84}, outcome.toArray());
+        Assert.assertEquals(49, this.binaryTree.getRoot().getLeft().getValue());
     }
 
+    @Test
+    public void shouldAddValueInRightNodeTest(){
+        //when
+        this.binaryTree.addValue(70);
+        this.binaryTree.addValue(84);
+
+        //then
+        Assert.assertEquals(84, this.binaryTree.getRoot().getRight().getValue());
+    }
+
+    @Test
+    public void shouldTraverseInOrderBinaryTreeTest(){
+        //when
+        this.binaryTree.addValue(70);
+        this.binaryTree.addValue(84);
+        this.binaryTree.addValue(49);
+
+        List<Integer> outcome = this.binaryTree.traverseInOrder();
+
+        Assert.assertArrayEquals(new Integer[]{ 49, 70, 84 }, outcome.toArray());
+    }
 }

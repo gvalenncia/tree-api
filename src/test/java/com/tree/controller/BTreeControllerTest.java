@@ -35,8 +35,8 @@ public class BTreeControllerTest {
         //given
         given(this.bTreeService.createBinaryTree(any())).willReturn(mockInOrderTreeDTO());
         TreeDTO input = new TreeDTO();
-        input.addValue(84);
         input.addValue(70);
+        input.addValue(84);
         input.addValue(49);
 
         //when
@@ -44,14 +44,14 @@ public class BTreeControllerTest {
 
         //then
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-        Assert.assertArrayEquals(mockInOrderTreeDTO().getValues().toArray(), response.getBody().getValues().toArray());
+        Assert.assertArrayEquals(new Integer[]{ 49, 70, 84 }, response.getBody().getValues().toArray());
     }
 
     private TreeDTO mockInOrderTreeDTO(){
         TreeDTO treeDTO = new TreeDTO();
         treeDTO.addValue(49);
-        treeDTO.addValue(84);
         treeDTO.addValue(70);
+        treeDTO.addValue(84);
         return treeDTO;
     }
 }
