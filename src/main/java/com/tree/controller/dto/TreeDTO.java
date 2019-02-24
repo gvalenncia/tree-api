@@ -1,5 +1,7 @@
 package com.tree.controller.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 public class TreeDTO {
 
     @NotEmpty
+    @ApiModelProperty(notes = "The elements to insert into the binary tree. ", required = true)
     private List<Integer> values;
 
     public TreeDTO(){
