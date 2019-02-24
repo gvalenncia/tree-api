@@ -1,7 +1,7 @@
-package com.tree.controller;
+package com.tree.service;
 
 import com.tree.controller.dto.TreeDTO;
-import com.tree.service.BTreeService;
+import com.tree.service.domain.BinaryTree;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,41 +10,39 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BTreeControllerTest {
+public class BTreeServiceTest {
 
     @Mock
-    private BTreeService bTreeService;
+    private BinaryTree binaryTree;
 
     @InjectMocks
-    private BTreeController bTreeController;
+    private BTreeService bTreeService;
 
     @Before
     public void init(){
-        MockitoAnnotations.initMocks(bTreeController);
+        MockitoAnnotations.initMocks(bTreeService);
     }
 
     @Test
-    public void shouldReturnInOrderWhenCreatingBinaryTreeTest(){
+    public void shouldCreateABinaryTreeTest(){
         //given
-        given(this.bTreeService.createBinaryTree(any())).willReturn(mockInOrderTreeDTO());
+        given(binaryTree.traverseInOrder()).willReturn(Arrays.asList(49, 84, 70));
         TreeDTO input = new TreeDTO();
         input.addValue(84);
         input.addValue(70);
         input.addValue(49);
 
         //when
-        ResponseEntity<TreeDTO> response = this.bTreeController.postBinaryTree(input);
+        TreeDTO outcome = this.bTreeService.createBinaryTree(input);
 
         //then
-        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-        Assert.assertArrayEquals(mockInOrderTreeDTO().getValues().toArray(), response.getBody().getValues().toArray());
+        Assert.assertArrayEquals(mockInOrderTreeDTO().getValues().toArray(), outcome.getValues().toArray());
     }
 
     private TreeDTO mockInOrderTreeDTO(){
