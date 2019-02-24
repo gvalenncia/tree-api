@@ -12,7 +12,7 @@
 	<artifactId>tree-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tree-api</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Binary tree api</description>
 
 	<properties>
 		<java.version>1.8</java.version>
