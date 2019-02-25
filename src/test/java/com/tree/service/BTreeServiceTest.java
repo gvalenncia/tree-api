@@ -11,8 +11,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Arrays;
-import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -43,5 +44,14 @@ public class BTreeServiceTest {
 
         //then
         Assert.assertArrayEquals(new Integer[]{ 49, 70, 84 }, outcome.getValues().toArray());
+    }
+
+    @Test
+    public void shouldReturnCommonAnscestorTest(){
+        given(this.binaryTree.getCommonAnscestor(anyInt(),anyInt())).willReturn(70);
+
+        int outcome = this.binaryTree.getCommonAnscestor(49,84);
+
+        Assert.assertEquals(70, outcome);
     }
 }

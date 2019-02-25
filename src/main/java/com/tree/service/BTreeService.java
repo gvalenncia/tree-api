@@ -22,4 +22,8 @@ public class BTreeService {
 
         return outcome;
     }
+
+    public int findCommonAncsestor(int n1, int n2) {
+        return this.binaryTree.getCommonAnscestor(n1, n2);
+    }
 }
