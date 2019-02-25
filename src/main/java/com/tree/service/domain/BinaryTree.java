@@ -41,4 +41,23 @@ public class BinaryTree {
         inOrder(values, node.getRight());
     }
 
+    public int getCommonAnscestor(int n1, int n2) {
+        return findCommonAnscestor(root, n1, n2).getValue();
+    }
+
+    private Node findCommonAnscestor(Node node, int n1, int n2){
+        if (node == null)
+            return null;
+
+        if (node.getValue() == n1 || node.getValue() == n2)
+            return node;
+
+        Node leftCA = findCommonAnscestor(node.getLeft(), n1, n2);
+        Node rightCA = findCommonAnscestor(node.getRight(), n1, n2);
+
+        if (leftCA!=null && rightCA!=null)
+            return node;
+
+        return (leftCA != null) ? leftCA : rightCA;
+    }
 }

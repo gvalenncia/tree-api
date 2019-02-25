@@ -73,4 +73,16 @@ public class BinaryTreeTest {
 
         Assert.assertArrayEquals(new Integer[]{ 22, 37, 40, 49, 51, 54, 70, 76, 78, 80, 84, 85 }, outcome.toArray());
     }
+
+    @Test
+    public void shouldGetTheCommonAnscestorOf2NodesTest(){
+        //when
+        this.binaryTree.addValue(70);
+        this.binaryTree.addValue(84);
+        this.binaryTree.addValue(49);
+
+        int outcome = this.binaryTree.getCommonAnscestor(84, 49);
+
+        Assert.assertEquals(70, outcome);
+    }
 }
