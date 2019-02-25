@@ -8,10 +8,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -36,6 +33,18 @@ public class BTreeController {
     public ResponseEntity<TreeDTO> postBinaryTree(@RequestBody @Valid TreeDTO treeDTO){
 
         TreeDTO outcome = this.bTreeService.createBinaryTree(treeDTO);
+
+        return ResponseEntity.ok().body(outcome);
+    }
+
+    @ApiOperation(value = "Get the common anscestor given 2 elements of the tree", response = Integer.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "The common anscestor")
+    })
+    @GetMapping("/ancestor")
+    public ResponseEntity<Integer> getCommonAnscestor(@RequestParam("n1")int n1, @RequestParam("n2")int n2){
+
+        int outcome = this.bTreeService.findCommonAncsestor(n1, n2);
 
         return ResponseEntity.ok().body(outcome);
     }
